@@ -20,7 +20,7 @@ app.use(cookieParser()); //handle cookies
 app.use('/api/v1/auth',authRouter);
 app.use('/api/v1/users',userRouter);
 app.use('/api/v1/subscriptions',subscriptionRouter);
-app.user(errorMiddleware);
+app.use(errorMiddleware);
 
 app.get('/',(req,res)=>{
     res.send('welcome to the subscription tracker api');
