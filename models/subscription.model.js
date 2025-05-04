@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 
+
 const subscriptionSchema = new mongoose.Schema({
     name:{
         type:String,
@@ -27,7 +28,7 @@ const subscriptionSchema = new mongoose.Schema({
     category:{
         type:String,
         required:[true,'Subscription category is required'],
-        enum:['entertainment','food','utilities','transportation','healthcare','other'],
+        enum:['Entertainment','food','utilities','transportation','healthcare','other'],
     },
     paymentMethod:{
         type:String,
@@ -51,7 +52,7 @@ const subscriptionSchema = new mongoose.Schema({
     },
     renewalDate:{
         type:Date,
-        required:[true,'Subscription renewal date is required'],
+        // required:true,
         validate:{
             validator:function(value){
                 return value> this.startDate;
@@ -76,10 +77,12 @@ subscriptionSchema.pre('save',function(next){
             monthly:30,
             yearly:365,
         }
-        this.renewaldate=new Date(this.startDate);
-        this.renewaldate.setDate(this.renewaldate.getDate()+renewalPeriods[this.frequency]);
+        
+        this.renewalDate=new Date(this.startDate);
+        this.renewalDate.setDate(this.renewalDate.getDate()+renewalPeriods[this.frequency]);
+        console.log(this.renewalDate);
     }
-    if(this.renewaldate<new Date()){
+    if(this.renewalDate<new Date()){
         this.status='expired';
     }
     next();
