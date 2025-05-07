@@ -65,3 +65,4 @@ This is a simple API for managing users, subscriptions, and authentication. It i
 ### Upcoming Renewals
 - `GET /subscriptions/upcoming-renewals`: Retrieve a list of subscriptions with upcoming renewals.
 
+<!-- npx @upstash/qstash-cli dev -->
